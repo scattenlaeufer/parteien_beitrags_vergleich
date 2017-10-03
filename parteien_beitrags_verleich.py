@@ -121,16 +121,53 @@ def fdp(einkommen):
     return beitrag
 
 
+def cdu(einkommen):
+    beitrag = []
+    for e in einkommen:
+        if e < 2500:
+            beitrag.append(6)
+        elif e < 4000:
+            beitrag.append(15)
+        elif e < 6000:
+            beitrag.append(25)
+        else:
+            beitrag.append(50)
+    return beitrag
+
+
+def csu(einkommen):
+    beitrag = []
+    for e in einkommen:
+        if e < 40000 / 12:
+            beitrag.append(70/12)
+        elif e < 60000 / 12:
+            beitrag.append(120/12)
+        else:
+            beitrag.append(200/12)
+    return beitrag
+
+
+def afd(einkommen):
+    beitrag = []
+    for e in einkommen:
+        beitrag.append(120/12)
+    return beitrag
+
+
 def make_graph():
-    einkommen = [e for e in range(5000)]
+    einkommen = [e for e in range(5500)]
     # einkommen = numpy.arange(0, 5000, 1)
     party_list = [[die_linke, '#ff00ff', None, 'DIE LINKE'],
                   [gruene, '#00ff00', None, 'GRÜNE'],
                   [spd, '#ff0000', None, 'SPD'],
                   [spd_2, '#ff0000', 'dashed', None],
                   [fdp, '#ffff00', None, 'FDP'],
+                  [cdu, '#000000', None, 'CDU'],
+                  [csu, '#0000ff', None, 'CSU'],
+                  [afd, '#8B4513', None, 'AFD'],
                   ]
-    pyplot.figure()
+    fig = pyplot.figure()
+    plot = fig.add_subplot(111)
     label = []
     for party in party_list:
         if party[2]:
@@ -139,9 +176,23 @@ def make_graph():
             pyplot.plot(einkommen, party[0](einkommen), party[1], linestyle='solid')
         if party[3]:
             label.append(patches.Patch(color=party[1], label=party[3]))
-    pyplot.legend(handles=label),
-    # pyplot.show()
+    pyplot.legend(handles=label)
+    plot.set_xlabel('Nettoeinkommen (€)')
+    plot.set_ylabel('Mitgliedsbeitrag pro Monat (€)')
     pyplot.savefig('parteienbeitrag.png', bbox_inches='tight')
+
+    einkommen = [e for e in range(1000)]
+    fig = pyplot.figure()
+    plot = fig.add_subplot(111)
+    for party in party_list:
+        if party[2]:
+            pyplot.plot(einkommen, party[0](einkommen), party[1], linestyle=party[2])
+        else:
+            pyplot.plot(einkommen, party[0](einkommen), party[1], linestyle='solid')
+    pyplot.legend(handles=label)
+    plot.set_xlabel('Nettoeinkommen (€)')
+    plot.set_ylabel('Mitgliedsbeitrag pro Monat (€)')
+    pyplot.savefig('parteienbeitrag_niedrige_einkommen.png', bbox_inches='tight')
 
 if __name__ == '__main__':
     make_graph()
