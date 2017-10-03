@@ -94,17 +94,52 @@ def spd_2(einkommen):
     return beitrag
 
 
+def gruene(einkommen):
+    beitrag = []
+    for e in einkommen:
+        beitrag.append(e * .01)
+    return beitrag
+
+
+def fdp(einkommen):
+    beitrag = []
+    for e in einkommen:
+        b = e * 0.005
+        if e <= 2600:
+            if b < 8:
+                b = 8
+        elif e <= 3600:
+            if b < 12:
+                b = 12
+        elif e <= 4600:
+            if b < 18:
+                b = 18
+        else:
+            if b < 24:
+                b = 24
+        beitrag.append(b)
+    return beitrag
+
+
 def make_graph():
-    # einkommen = [e for e in range(2500)]
-    einkommen = numpy.arange(0, 5000, 1)
-    color_die_linke = '#ff00ff'
-    color_spd = '#ff0000'
+    einkommen = [e for e in range(5000)]
+    # einkommen = numpy.arange(0, 5000, 1)
+    party_list = [[die_linke, '#ff00ff', None, 'DIE LINKE'],
+                  [gruene, '#00ff00', None, 'GRÜNE'],
+                  [spd, '#ff0000', None, 'SPD'],
+                  [spd_2, '#ff0000', 'dashed', None],
+                  [fdp, '#ffff00', None, 'FDP'],
+                  ]
     pyplot.figure()
-    pyplot.plot(einkommen, die_linke(einkommen), color_die_linke, label='DIE LINKE')
-    pyplot.plot(einkommen, spd_2(einkommen), color=color_spd, linestyle='dashed')
-    pyplot.plot(einkommen, spd(einkommen), color_spd, label='SPD')
-    pyplot.legend(handles=[patches.Patch(color=color_die_linke, label='DIE LINKE'),
-                           patches.Patch(color=color_spd, label='SPD')])
+    label = []
+    for party in party_list:
+        if party[2]:
+            pyplot.plot(einkommen, party[0](einkommen), party[1], linestyle=party[2])
+        else:
+            pyplot.plot(einkommen, party[0](einkommen), party[1], linestyle='solid')
+        if party[3]:
+            label.append(patches.Patch(color=party[1], label=party[3]))
+    pyplot.legend(handles=label),
     # pyplot.show()
     pyplot.savefig('parteienbeitrag.png', bbox_inches='tight')
 
