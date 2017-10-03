@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import numpy
-from matplotlib import pyplot
+from matplotlib import pyplot, patches
 
 def die_linke(einkommen):
     beitrag = []
@@ -97,10 +97,14 @@ def spd_2(einkommen):
 def make_graph():
     # einkommen = [e for e in range(2500)]
     einkommen = numpy.arange(0, 5000, 1)
+    color_die_linke = '#ff00ff'
+    color_spd = '#ff0000'
     pyplot.figure()
-    pyplot.plot(einkommen, die_linke(einkommen), 'k',
-                einkommen, spd_2(einkommen), 'r--',
-                einkommen, spd(einkommen), 'r')
+    pyplot.plot(einkommen, die_linke(einkommen), color_die_linke, label='DIE LINKE')
+    pyplot.plot(einkommen, spd_2(einkommen), color=color_spd, linestyle='dashed')
+    pyplot.plot(einkommen, spd(einkommen), color_spd, label='SPD')
+    pyplot.legend(handles=[patches.Patch(color=color_die_linke, label='DIE LINKE'),
+                           patches.Patch(color=color_spd, label='SPD')])
     # pyplot.show()
     pyplot.savefig('parteienbeitrag.png', bbox_inches='tight')
 
