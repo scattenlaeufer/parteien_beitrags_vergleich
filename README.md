@@ -8,10 +8,16 @@ Ein kleiner Vergleich der Mitgliedsbeiträge einiger deutschen Parteien
 
 ### SPD
 Die SPD teilt die Mitgliedsbeiträge in fünf Kategorien nach
-Monatsnettoeinkommen auf. ab der zweiten Kategorie werden diese nochmal in
+Monatsnettoeinkommen auf. Ab der zweiten Kategorie werden diese nochmal in
 jeweils drei Beitragsstufen aufgeteilt, in die sich jedes Mitglied entsprechend
 Einkommen einstuft. Diese Beitragsstufen sind im Graphen durch die gestrichelte
 Line verdeutlicht.
+
+### AFD
+Die AFD hat einen Mindestbeitrag von 120€ pro Jahr, empfiehlt ihren Mitglieder
+aber 1% des Jahresnettoeinkommens als freiwillig erhöhten Mitgliedsbeitrag zu
+zahlen, sollte dieser Beitrag über dem Mindestbeitrag liegen. Im Graph ist aber
+nur der Mindestbeitrag abgebildet.
 
 ## Quellen
 Partei | Quelle | gültig seit
