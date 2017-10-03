@@ -157,10 +157,10 @@ def afd(einkommen):
 def make_graph():
     einkommen = [e for e in range(5500)]
     # einkommen = numpy.arange(0, 5000, 1)
-    party_list = [[die_linke, '#ff00ff', None, 'DIE LINKE'],
+    party_list = [[die_linke, '#ff0000', None, 'DIE LINKE'],
                   [gruene, '#00ff00', None, 'GRÜNE'],
-                  [spd, '#ff0000', None, 'SPD'],
-                  [spd_2, '#ff0000', 'dashed', None],
+                  [spd, '#980267', None, 'SPD'],
+                  [spd_2, '#980267', 'dashed', None],
                   [fdp, '#ffff00', None, 'FDP'],
                   [cdu, '#000000', None, 'CDU'],
                   [csu, '#0000ff', None, 'CSU'],
